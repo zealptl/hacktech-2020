@@ -24,16 +24,75 @@
         <strong class="detailDescription"></strong>
       </p>
     </div> -->
+    <section class="landing-page">
+      <div id="map"></div>
+      <div class="form">
+        <h2>
+          Please let us know if you are a victim or witness of a racism attack
+          due to coronavirus
+        </h2>
+        <form method="post" action="#">
+          <div class="input-field">
+            <label for="location">Where did it happen?</label>
+            <input type="text" id="location" placeholder="Enter zip code *" />
+          </div>
+          <div class="input-field">
+            <label for="description">What happened?</label>
+            <input
+              type="text"
+              id="description"
+              placeholder="Provide decription *"
+            />
+          </div>
+        </form>
+      </div>
+    </section>
 
-    <div id="map"></div>
+    <section class="tips-page">
+      <div class="avoid-coronavirus">
+        <h1>Tips For Avoiding The Coronavirus</h1>
+        <ul>
+          <li>Avoid events with many attendees (>50).</li>
+          <li>Avoid touching your face.</li>
+          <li>Try to stay home if you're sick.</li>
+          <li>
+            Carry some hand sanitizer or wet wipes and clean surfaces you might
+            touch as well as your hands.
+          </li>
+          <li>
+            Wash your hands when possible, with soap and water, for at least 20
+            seconds.
+          </li>
+        </ul>
+      </div>
+
+      <div class="avoid-confrontations">
+        <h1>Tips For Avoiding Confrontations</h1>
+        <ul>
+          <li>Travel in areas where people can see you.</li>
+          <li>
+            Be cautious- notice your surroundings and don't use your phone in
+            public.
+          </li>
+          <li>
+            Have a friend travel with you since the probability of getting
+            approached lowers substantially.
+          </li>
+          <li>
+            Cover your face with sunglasses, a mask, and maybe even a hood.
+          </li>
+          <li>Try to avoid people who appear agitated.</li>
+        </ul>
+      </div>
+    </section>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-database.js"></script>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhh-WBR0xhzR1yAW11doRvjxWONH2RB8U&callback=initMap"
       async
       defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvPguKuWlYlznkTBe0khVTRsGFV7-2WuU &callback=initMap"
     ></script>
     <script type="text/javascript" src="app.js"></script>
   </body>

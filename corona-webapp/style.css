@@ -6,17 +6,107 @@
 
 html,
 body {
-  color: #fff;
-  background-color: #111;
+  color: #000;
+  background-color: #fff;
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 18px;
 }
 
+h2 {
+  font-weight: 300;
+}
+
 /* --------------------------------------- */
 /* LANDING PAGE */
 /* --------------------------------------- */
-#map {
-  width: 100vw;
+.landing-page {
+  display: flex;
   height: 100vh;
+}
+
+#map {
+  width: 66.67%;
+  height: 100vh;
+}
+
+/*----- FORM -----*/
+.form {
+  width: 33.3%;
+  padding: 30px;
+  line-height: 30px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffe4e1;
+}
+
+.form form {
+  padding: 30px 0;
+}
+
+.form label {
+  font-size: 70%;
+}
+
+input {
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 25px;
+  border-radius: 15px;
+  background-color: #fff;
+  border: 2px solid #000;
+  color: #000;
+  transition: all 0.6s ease;
+}
+
+input[type="description"] {
+  height: 400px;
+}
+
+*:focus {
+  outline: none;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border: 2px solid #ff4b37;
+}
+
+/* --------------------------------------- */
+/* TIPS PAGE */
+/* --------------------------------------- */
+.tips-page {
+  display: flex;
+  background-color: #ffebcd;
+  margin: 60px 0;
+  height: 75vh;
+}
+
+.avoid-coronavirus {
+  background-color: #e8f6f7;
+  padding: 60px 0;
+}
+
+.avoid-confrontations {
+  background-color: #ffe4e1;
+  padding: 60px 0;
+}
+
+.avoid-coronavirus,
+.avoid-confrontations {
+  padding: 50px;
+  margin-left: 0 10%;
+}
+
+.avoid-coronavirus h1,
+.avoid-confrontations h1 {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.avoid-coronavirus li,
+.avoid-confrontations li {
+  margin: 20px 0;
+  width: 90%;
 }
