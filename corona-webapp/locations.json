@@ -1,19 +1,44 @@
 {
-  "locations": [{
-    "name": "Bhavesh",
-    "address": "NYC",
-    "description": "insert description of what happened"
-  }, {
-    "name": "Jonathan",
-    "address": "Austin",
-    "description": "insert description of what happened"
-  }, {
-    "name": "Kevin",
-    "address": "Seattle",
-    "description": "insert description of what happened"
-  }, {
-    "name": "Zeal",
-    "address": "San Francisco",
-    "description": "insert description of what happened"
-  }]
+  "incidents": [
+    {
+      "name": "Jonathan",
+      "address": {
+        "lat": 51.507351,
+        "long": -0.127758
+      },
+      "datetime": "2020-03-07T20:57:31.813Z",
+      "description": "Verbally assaulted in Shoreditch",
+      "link": "https://www.cnn.com/2020/03/03/uk/coronavirus-assault-student-london-scli-intl-gbr/index.html"
+    },
+    {
+      "name": "Bhavesh",
+      "address": {
+        "lat": 40.712776,
+        "long": -74.005974
+      },
+      "datetime": "2020-03-07T20:57:31.813Z",
+      "description": "Everyone left the train as soon as I walked on",
+      "link": "https://www.businessinsider.com/americans-see-increase-in-racism-and-xenophobia-as-coronavirus-spreads"
+    },
+    {
+      "name": "Kevin",
+      "address": {
+        "lat": 41.34354,
+        "long": -86.30954
+      },
+      "datetime": "2020-03-07T20:57:31.814Z",
+      "description": "Denied access to motel.",
+      "link": "https://wsbt.com/news/local/asian-men-denied-rooms-at-plymouth-motels-over-coronavirus-fears-racism-at-its-finest"
+    },
+    {
+      "name": "Zeal",
+      "address": {
+        "lat": 51.507351,
+        "long": -0.127758
+      },
+      "datetime": "2020-03-07T20:57:31.814Z",
+      "description": "Attacked when I got off the bus in Fulham",
+      "link": "https://www.theguardian.com/world/2020/feb/16/they-yelled-coronavirus-first-british-attack-victim-east-asian-man"
+    }
+  ]
 }
