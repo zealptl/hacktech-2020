@@ -1,0 +1,19 @@
+{
+  "locations": [{
+    "name": "Bhavesh",
+    "address": "NYC",
+    "description": "insert description of what happened"
+  }, {
+    "name": "Jonathan",
+    "address": "Austin",
+    "description": "insert description of what happened"
+  }, {
+    "name": "Kevin",
+    "address": "Seattle",
+    "description": "insert description of what happened"
+  }, {
+    "name": "Zeal",
+    "address": "San Francisco",
+    "description": "insert description of what happened"
+  }]
+}
