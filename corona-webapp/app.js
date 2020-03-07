@@ -17,29 +17,36 @@ firebase.initializeApp(firebaseConfig);
 const dbRef = firebase.database().ref();
 const locationsRef = dbRef.child("locations");
 
-// Populate rows in list
+
+// Adding data to Firebase
+const addIncidentBtnUI = document.getElementById("add-incident-btn"); 
+addIncidentBtnUI.addEventListener("click", addIncidentBtnClicked);
+
+function addIncidentBtnClicked() {
+  const addUserInputsUI = document.getElementsByClassName("user-input");
+  let newIncident = {};
+
+  for (let i = 0, len = addUserInputsUI.length; i < len; i++) {
+      let key = addUserInputsUI[i].getAttribute('id');
+      let value = addUserInputsUI[i].value;
+      newIncident[key] = value;
+  }
+
+   locationsRef.push(newIncident)
+   var successText = document.createTextNode("Success!"); 
+   document.body.appendChild(successText);
+}
+
+// Pulling data from Firebase
 const locationListUI = document.getElementById("locationList");
 locationsRef.on("child_added", snap => {
   let location = snap.val();
   let $li = document.createElement("li");
-  $li.innerHTML = location.name;
-  $li.setAttribute("child-key", snap.key);
-  $li.addEventListener("click", locationClicked);
-  locationListUI.append($li);
+  let $li2 = document.createElement("li");
+  $li.innerHTML = location.address;
+  $li2.innerHTML = location.description;
 });
 
-// Show detail when clicked
-function locationClicked(e) {
-  var locationID = e.target.getAttribute("child-key");
-  const locationRef = dbRef.child("locations/" + locationID);
-  const locationDetailUI = document.getElementById("locationDetail");
-  locationDetailUI.innerHTML = "";
-  locationRef.on("child_added", snap => {
-    var $p = document.createElement("p");
-    $p.innerHTML = snap.key + " - " + snap.val();
-    locationDetailUI.append($p);
-  });
-}
 
 // Google Maps
 function initMap() {

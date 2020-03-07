@@ -2,28 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Sample CRUD Firebase Javascript - 01 Read Data</title>
+    <title>Corona Racism</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- <h1>
-      Click on the names
-    </h1>
-    <ul id="locationList"></ul>
-    <div id="locationDetail">
-      <p>
-        Name :
-        <strong class="detailName"></strong>
-      </p>
-      <p>
-        Address:
-        <strong class="detailAddress"></strong>
-      </p>
-      <p>
-        Description:
-        <strong class="detailDescription"></strong>
-      </p>
-    </div> -->
     <section class="landing-page">
       <div id="map"></div>
       <div class="form">
@@ -34,15 +16,15 @@
         <form method="post" action="#">
           <div class="input-field">
             <label for="location">Where did it happen?</label>
-            <input type="text" id="location" placeholder="Enter zip code *" />
+            <input type="text" id="address" class="user-input" placeholder="Enter zip code *" />
           </div>
           <div class="input-field">
             <label for="description">What happened?</label>
-            <input
-              type="text"
-              id="description"
-              placeholder="Provide decription *"
-            />
+            <input type="text" id="description" class="user-input" placeholder="Provide decription *" />
+          </div>
+          <div class="input-field">
+            <label for="submit">Submit</label>
+            <button type='button' id="add-incident-btn">Add Incident</button>
           </div>
         </form>
       </div>
