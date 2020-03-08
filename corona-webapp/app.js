@@ -33,8 +33,11 @@ function addIncidentBtnClicked() {
   }
 
    locationsRef.push(newIncident)
+
    var successText = document.createTextNode("Success!"); 
+   successText.id = "successText";
    document.body.appendChild(successText);
+   document.getElementById("successText").style.color = "green";
 }
 
 // Pulling data from Firebase

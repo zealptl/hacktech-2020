@@ -13,7 +13,7 @@
           Please let us know if you are a victim or witness of a racism attack
           due to coronavirus
         </h2>
-        <form method="post" action="#">
+        <form id = "myForm" method="post" action="#">
           <div class="input-field">
             <label for="location">Where did it happen?</label>
             <input type="text" id="address" class="user-input" placeholder="Enter zip code *" />
@@ -23,9 +23,14 @@
             <textarea name = "message" placeholder="Provide decription *" /> </textarea>
           </div>
           <div class="input-field" align = "center">
-            <button type='button' id="add-incident-btn">Add Incident</button>
+            <button type='button' onclick = "myFunction()" id="add-incident-btn">Add Incident</button>
           </div>
         </form>
+        <script>
+          function myFunction(){
+            document.getElementById("myForm").reset();
+          }
+        </script>
       </div>
     </section>
 
