@@ -10,25 +10,13 @@ var firebaseConfig = {
   measurementId: "G-6X7NRFQTYN"
 };
 
-var markers = [
-    {
-      coords: { lat: 40.7831, lng: -73.9712 }
-    },
-    {
-      coords: { lat: 40.742054, lng: -73.769417 }
-    },
-    {
-      coords: { lat: 40.650002, lng: -73.949997 }
-    }
-  ];
 
-
-// Initialize Firebase
+// Initialize Firebase and set up database connection
 firebase.initializeApp(firebaseConfig);
-
-// Firebase locations database connection set up
 const dbRef = firebase.database().ref();
 const locationsRef = dbRef.child("locations");
+
+
 
 // Pushing data to Firebase
 const addIncidentBtnUI = document.getElementById("add-incident-btn");
@@ -50,7 +38,12 @@ function addIncidentBtnClicked() {
   document.getElementById("svg-check").style.display = "inline";
 }
 
+
+
 // Pulling data from Firebase
+readUserData();
+
+
 function readUserData() {
   const locationListUI = document.getElementById("locationList");
   locationsRef.on("child_added", snap => {
@@ -61,9 +54,12 @@ function readUserData() {
     //console.log(location.latitude);
     //console.log(location.longitude);
     
-    markers.push( {coords: { lat: parseFloat(location.latitude), lng: parseFloat(location.longitude)} });
+    var marker = {coords: { lat: parseFloat(location.latitude), lng: parseFloat(location.longitude)} };
+    addMarkers(marker);
   });
 }
+
+
 
 //Find Me button clicked
 document.getElementById("find-me-btn").addEventListener("click", () => {
@@ -72,30 +68,32 @@ document.getElementById("find-me-btn").addEventListener("click", () => {
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
-      lat = position.coords.latitude;
-      long = position.coords.longitude;
+      newLat = position.coords.latitude;
+      newLong = position.coords.longitude;
 
       var latitudeOnPage = document.getElementById("latitude");
-      latitudeOnPage.value = lat;
+      latitudeOnPage.value = newLat;
 
       var longitudeOnPage = document.getElementById("longitude");
-      longitudeOnPage.value = long;
+      longitudeOnPage.value = newLong;
 
-      console.log(lat, long);
+      var marker = {coords: { lat: parseFloat(newLat), lng: parseFloat(newLong)} };
+      addMarkers(marker);
+
+      console.log(newLat, newLong);
     });
   } else {
     console.log("geolocation not available");
   }
 });
 
-var map;
+
 
 // Google Maps
+var map;
+
+
 function initMap() {
-  readUserData();
-
-  setTimeout(function(){ // 2 second timeout while data from database is loaded
-
     var options = {
       zoom: 8,
       center: { lat: 40.7831, lng: -73.9712 }
@@ -103,15 +101,23 @@ function initMap() {
 
     map = new google.maps.Map(document.getElementById("map"), options);
 
+    var markers = [
+      {
+        coords: { lat: 40.7831, lng: -73.9712 }
+      },
+      {
+        coords: { lat: 40.742054, lng: -73.769417 }
+      },
+      {
+        coords: { lat: 40.650002, lng: -73.949997 }
+      }
+    ];
 
     for (let i = 0; i < markers.length; i++) {
       addMarkers(markers[i]);
       console.log(markers[i]);
     }
-
-
-  }, 2000); 
-
+}
 
   function addMarkers(props) {
     var marker = new google.maps.Marker({
@@ -119,4 +125,4 @@ function initMap() {
       map: map
     });
   }
-}
+
