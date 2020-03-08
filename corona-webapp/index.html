@@ -13,24 +13,75 @@
           Please let us know if you are a victim or witness of a racism attack
           due to coronavirus
         </h2>
-        <form id = "myForm" method="post" action="#">
+        <form method="post" action="#" id="form">
           <div class="input-field">
             <label for="location">Where did it happen?</label>
-            <input type="text" id="address" class="user-input" placeholder="Enter zip code *" />
+            <div class="location-input">
+              <input
+                type="text"
+                id="address"
+                class="user-input"
+                placeholder="Enter zip code *"
+              />
+              <span>or</span>
+              <button type="button" id="find-me-btn" class="btn">
+                Find Me
+              </button>
+            </div>
           </div>
           <div class="input-field">
             <label for="description">What happened?</label>
-            <textarea name = "message" placeholder="Provide decription *" /> </textarea>
-          </div>
-          <div class="input-field" align = "center">
-            <button type='button' onclick = "myFunction()" id="add-incident-btn">Add Incident</button>
+            <textarea name = "message" placeholder="Enter description *" /> </textarea>
+            <div class="confirmation">
+              <button type="button" id="add-incident-btn" class="btn">
+                Add Incident
+              </button>
+              <svg viewBox="0 0 100 100" class="animate" id="svg-check">
+                <filter id="dropshadow" height="100%">
+                  <feGaussianBlur
+                    in="SourceAlpha"
+                    stdDeviation="3"
+                    result="blur"
+                  />
+                  <feFlood
+                    flood-color="rgba(76, 175, 80, 1)"
+                    flood-opacity="0.5"
+                    result="color"
+                  />
+                  <feComposite
+                    in="color"
+                    in2="blur"
+                    operator="in"
+                    result="blur"
+                  />
+                  <feMerge>
+                    <feMergeNode />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="46.5"
+                  fill="none"
+                  stroke="rgba(76, 175, 80, 0.5)"
+                  stroke-width="10"
+                />
+
+                <path
+                  d="M67,93 A46.5,46.5 0,1,0 7,32 L43,67 L88,19"
+                  fill="none"
+                  stroke="rgba(76, 175, 80, 1)"
+                  stroke-width="10"
+                  stroke-linecap="round"
+                  stroke-dasharray="80 1000"
+                  stroke-dashoffset="-220"
+                  style="filter:url(#dropshadow)"
+                />
+              </svg>
+            </div>
           </div>
         </form>
-        <script>
-          function myFunction(){
-            document.getElementById("myForm").reset();
-          }
-        </script>
       </div>
     </section>
 

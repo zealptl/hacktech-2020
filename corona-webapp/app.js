@@ -17,9 +17,8 @@ firebase.initializeApp(firebaseConfig);
 const dbRef = firebase.database().ref();
 const locationsRef = dbRef.child("locations");
 
-
 // Adding data to Firebase
-const addIncidentBtnUI = document.getElementById("add-incident-btn"); 
+const addIncidentBtnUI = document.getElementById("add-incident-btn");
 addIncidentBtnUI.addEventListener("click", addIncidentBtnClicked);
 
 function addIncidentBtnClicked() {
@@ -27,17 +26,14 @@ function addIncidentBtnClicked() {
   let newIncident = {};
 
   for (let i = 0, len = addUserInputsUI.length; i < len; i++) {
-      let key = addUserInputsUI[i].getAttribute('id');
-      let value = addUserInputsUI[i].value;
-      newIncident[key] = value;
+    let key = addUserInputsUI[i].getAttribute("id");
+    let value = addUserInputsUI[i].value;
+    newIncident[key] = value;
   }
 
-   locationsRef.push(newIncident)
+  locationsRef.push(newIncident);
 
-   var successText = document.createTextNode("Success!"); 
-   successText.id = "successText";
-   document.body.appendChild(successText);
-   document.getElementById("successText").style.color = "green";
+  document.getElementById("svg-check").style.display = "inline";
 }
 
 // Pulling data from Firebase
@@ -50,6 +46,21 @@ locationsRef.on("child_added", snap => {
   $li2.innerHTML = location.description;
 });
 
+//Find Me button clicked
+document.getElementById("find-me-btn").addEventListener("click", () => {
+  let long;
+  let lat;
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(position => {
+      lat = position.coords.latitude;
+      long = position.coords.longitude;
+      console.log(lat, long);
+    });
+  } else {
+    console.log("geolocation not available");
+  }
+});
 
 // Google Maps
 function initMap() {

@@ -17,14 +17,16 @@ h2 {
   font-weight: 300;
 }
 
-button{
-  background-color: #F08080;
-  color: #F0F8FF;
+button {
+  background-color: #f08080;
+  color: #f0f8ff;
   padding: 10px 20px;
   display: inline-block;
   border-radius: 12px;
 }
-button:hover {background-color: #FFB6C1}
+button:hover {
+  background-color: #ffb6c1;
+}
 /* --------------------------------------- */
 /* LANDING PAGE */
 /* --------------------------------------- */
@@ -53,7 +55,7 @@ button:hover {background-color: #FFB6C1}
 }
 
 .form label {
-  font-size: 70%;
+  font-size: 80%;
 }
 
 input {
@@ -64,24 +66,26 @@ input {
   background-color: #fff;
   border: 2px solid #000;
   color: #000;
-  transition: all 0.6s ease;
+  transition: all 0.3s ease;
 }
 
-textarea{
+input {
+  height: 40px;
+  font-size: 70%;
+}
+
+textarea {
   padding: 10px;
   width: 100%;
+  height: 150px;
   margin-bottom: 25px;
   border-radius: 15px;
   background-color: #fff;
   border: 2px solid #000;
   color: #000;
-  transition: all 0.6s ease;
+  font-size: 80%;
+  transition: all 0.3s ease;
 }
-
-input[type="description"] {
-  height: 400px;
-}
-
 
 *:focus {
   outline: none;
@@ -91,6 +95,63 @@ input:focus,
 textarea:focus {
   outline: none;
   border: 2px solid #ff4b37;
+}
+
+.location-input {
+  display: flex;
+}
+
+.location-input input {
+  width: 50%;
+}
+
+.location-input span {
+  margin: 0 20px;
+}
+
+.btn {
+  height: 40px;
+  border-radius: 15px;
+  cursor: pointer;
+  background-color: #fff;
+  color: #000;
+  transition: all 0.3s ease;
+  font-size: 70%;
+  border: 2px solid black;
+}
+
+.btn:hover {
+  background-color: #ff4b37;
+  color: #fff;
+}
+
+/*----- SVG CHECK ANIMATION -----*/
+#svg-check {
+  display: none;
+}
+
+svg {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  right: 20%;
+}
+
+svg.animate path {
+  animation: dash 0.75s linear both;
+  animation-delay: 0.5s;
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 210;
+  }
+  75% {
+    stroke-dashoffset: -220;
+  }
+  100% {
+    stroke-dashoffset: -205;
+  }
 }
 
 /* --------------------------------------- */
