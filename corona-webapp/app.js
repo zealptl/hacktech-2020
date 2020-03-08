@@ -42,7 +42,7 @@ function readUserData() {
   locationsRef.on("child_added", snap => {
     let location = snap.val();
 
-    //console.log(location.address);
+    //console.log(location.severity);
     //console.log(location.description);
     //console.log(location.latitude);
     //console.log(location.longitude);
@@ -51,11 +51,14 @@ function readUserData() {
       coords: {
         lat: parseFloat(location.latitude),
         lng: parseFloat(location.longitude)
-      }
+      },
+      severity: location.severity
     };
     addMarkers(marker);
   });
 }
+
+
 
 //Find Me button clicked
 document.getElementById("find-me-btn").addEventListener("click", () => {
@@ -89,6 +92,33 @@ document.getElementById("find-me-btn").addEventListener("click", () => {
   }
 });
 
+
+
+
+//Depending on severity button clicked, updates severity value on page
+document.getElementById("onClickButton1").addEventListener("click", () => {
+    var severityOnPage = document.getElementById("severity");
+    severityOnPage.value = "1";
+});
+document.getElementById("onClickButton2").addEventListener("click", () => {
+    var severityOnPage = document.getElementById("severity");
+    severityOnPage.value = "2";
+});
+document.getElementById("onClickButton3").addEventListener("click", () => {
+    var severityOnPage = document.getElementById("severity");
+    severityOnPage.value = "3";
+});
+document.getElementById("onClickButton4").addEventListener("click", () => {
+    var severityOnPage = document.getElementById("severity");
+    severityOnPage.value = "4";
+});
+document.getElementById("onClickButton5").addEventListener("click", () => {
+    var severityOnPage = document.getElementById("severity");
+    severityOnPage.value = "5";
+});
+
+
+
 // Google Maps
 var map;
 
@@ -102,13 +132,16 @@ function initMap() {
 
   var markers = [
     {
-      coords: { lat: 40.7831, lng: -73.9712 }
+      coords: { lat: 40.7831, lng: -73.9712 },
+      severity: "1"
     },
     {
-      coords: { lat: 40.742054, lng: -73.769417 }
+      coords: { lat: 40.742054, lng: -73.769417 },
+      severity: "1"
     },
     {
-      coords: { lat: 40.650002, lng: -73.949997 }
+      coords: { lat: 40.650002, lng: -73.949997 },
+      severity: "1"
     }
   ];
 
@@ -119,11 +152,46 @@ function initMap() {
 }
 
 function addMarkers(props) {
-  var marker = new google.maps.Marker({
-    position: props.coords,
-    animation: google.maps.Animation.DROP,
-    map: map
-  });
+  if (props.severity == "1") {
+    var marker = new google.maps.Marker({
+      position: props.coords,
+      animation: google.maps.Animation.DROP,
+      map: map,
+      icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+    });
+  }
+  else if (props.severity == "2") {
+    var marker = new google.maps.Marker({
+      position: props.coords,
+      animation: google.maps.Animation.DROP,
+      map: map,
+      icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+    });
+  }
+  else if (props.severity == "3") {
+    var marker = new google.maps.Marker({
+      position: props.coords,
+      animation: google.maps.Animation.DROP,
+      map: map,
+      icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
+    });
+  }
+  else if (props.severity == "4") {
+    var marker = new google.maps.Marker({
+      position: props.coords,
+      animation: google.maps.Animation.DROP,
+      map: map,
+      icon: 'http://maps.google.com/mapfiles/ms/icons/orange-dot.png'
+    });
+  }
+  else if (props.severity == "5") {
+    var marker = new google.maps.Marker({
+      position: props.coords,
+      animation: google.maps.Animation.DROP,
+      map: map,
+      icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+    });
+  }
 }
 
 /*----- ANIMATIONS -----*/
