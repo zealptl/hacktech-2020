@@ -10,6 +10,19 @@ var firebaseConfig = {
   measurementId: "G-6X7NRFQTYN"
 };
 
+var markers = [
+    {
+      coords: { lat: 40.7831, lng: -73.9712 }
+    },
+    {
+      coords: { lat: 40.742054, lng: -73.769417 }
+    },
+    {
+      coords: { lat: 40.650002, lng: -73.949997 }
+    }
+  ];
+
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
@@ -17,7 +30,7 @@ firebase.initializeApp(firebaseConfig);
 const dbRef = firebase.database().ref();
 const locationsRef = dbRef.child("locations");
 
-// Adding data to Firebase
+// Pushing data to Firebase
 const addIncidentBtnUI = document.getElementById("add-incident-btn");
 addIncidentBtnUI.addEventListener("click", addIncidentBtnClicked);
 
@@ -40,10 +53,13 @@ function addIncidentBtnClicked() {
 const locationListUI = document.getElementById("locationList");
 locationsRef.on("child_added", snap => {
   let location = snap.val();
-  let $li = document.createElement("li");
-  let $li2 = document.createElement("li");
-  $li.innerHTML = location.address;
-  $li2.innerHTML = location.description;
+  
+  //console.log(location.address);
+  //console.log(location.description);
+  console.log(location.latitude);
+  console.log(location.longitude);
+  
+  markers.push( {coords: { lat: location.latitude, long: location.longitude} });
 });
 
 //Find Me button clicked
@@ -55,6 +71,13 @@ document.getElementById("find-me-btn").addEventListener("click", () => {
     navigator.geolocation.getCurrentPosition(position => {
       lat = position.coords.latitude;
       long = position.coords.longitude;
+
+      var latitudeOnPage = document.getElementById("latitude");
+      latitudeOnPage.value = lat;
+
+      var longitudeOnPage = document.getElementById("longitude");
+      longitudeOnPage.value = long;
+
       console.log(lat, long);
     });
   } else {
@@ -71,20 +94,10 @@ function initMap() {
 
   var map = new google.maps.Map(document.getElementById("map"), options);
 
-  var markers = [
-    {
-      coords: { lat: 40.7831, lng: -73.9712 }
-    },
-    {
-      coords: { lat: 40.742054, lng: -73.769417 }
-    },
-    {
-      coords: { lat: 40.650002, lng: -73.949997 }
-    }
-  ];
 
   for (let i = 0; i < markers.length; i++) {
     addMarkers(markers[i]);
+    console.log(markers[i]);
   }
 
   function addMarkers(props) {
