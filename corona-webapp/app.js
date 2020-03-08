@@ -10,18 +10,14 @@ var firebaseConfig = {
   measurementId: "G-6X7NRFQTYN"
 };
 
-
 // Initialize Firebase and set up database connection
 firebase.initializeApp(firebaseConfig);
 const dbRef = firebase.database().ref();
 const locationsRef = dbRef.child("locations");
 
-
-
 // Pushing data to Firebase
 const addIncidentBtnUI = document.getElementById("add-incident-btn");
 addIncidentBtnUI.addEventListener("click", addIncidentBtnClicked);
-
 
 function addIncidentBtnClicked() {
   const addUserInputsUI = document.getElementsByClassName("user-input");
@@ -34,32 +30,32 @@ function addIncidentBtnClicked() {
   }
 
   locationsRef.push(newIncident);
-
   document.getElementById("svg-check").style.display = "inline";
+  document.getElementById("form").reset();
 }
-
-
 
 // Pulling data from Firebase
 readUserData();
-
 
 function readUserData() {
   const locationListUI = document.getElementById("locationList");
   locationsRef.on("child_added", snap => {
     let location = snap.val();
-    
+
     //console.log(location.address);
     //console.log(location.description);
     //console.log(location.latitude);
     //console.log(location.longitude);
-    
-    var marker = {coords: { lat: parseFloat(location.latitude), lng: parseFloat(location.longitude)} };
+
+    var marker = {
+      coords: {
+        lat: parseFloat(location.latitude),
+        lng: parseFloat(location.longitude)
+      }
+    };
     addMarkers(marker);
   });
 }
-
-
 
 //Find Me button clicked
 document.getElementById("find-me-btn").addEventListener("click", () => {
@@ -77,52 +73,76 @@ document.getElementById("find-me-btn").addEventListener("click", () => {
       var longitudeOnPage = document.getElementById("longitude");
       longitudeOnPage.value = newLong;
 
-      var marker = {coords: { lat: parseFloat(newLat), lng: parseFloat(newLong)} };
+      var marker = {
+        coords: { lat: parseFloat(newLat), lng: parseFloat(newLong) }
+      };
       addMarkers(marker);
 
-      console.log(newLat, newLong);
+      document.getElementById("lat").textContent = "Lat: " + newLat.toFixed(3);
+      document.getElementById("long").textContent =
+        "Long: " + newLong.toFixed(3);
+
+      console.log("NEW LAT/LONG: ", newLat, newLong);
     });
   } else {
     console.log("geolocation not available");
   }
 });
 
-
-
 // Google Maps
 var map;
 
-
 function initMap() {
-    var options = {
-      zoom: 8,
-      center: { lat: 40.7831, lng: -73.9712 }
-    };
+  var options = {
+    zoom: 8,
+    center: { lat: 40.7831, lng: -73.9712 }
+  };
 
-    map = new google.maps.Map(document.getElementById("map"), options);
+  map = new google.maps.Map(document.getElementById("map"), options);
 
-    var markers = [
-      {
-        coords: { lat: 40.7831, lng: -73.9712 }
-      },
-      {
-        coords: { lat: 40.742054, lng: -73.769417 }
-      },
-      {
-        coords: { lat: 40.650002, lng: -73.949997 }
-      }
-    ];
-
-    for (let i = 0; i < markers.length; i++) {
-      addMarkers(markers[i]);
-      console.log(markers[i]);
+  var markers = [
+    {
+      coords: { lat: 40.7831, lng: -73.9712 }
+    },
+    {
+      coords: { lat: 40.742054, lng: -73.769417 }
+    },
+    {
+      coords: { lat: 40.650002, lng: -73.949997 }
     }
+  ];
+
+  for (let i = 0; i < markers.length; i++) {
+    addMarkers(markers[i]);
+    console.log(markers[i]);
+  }
 }
 
-  function addMarkers(props) {
-    var marker = new google.maps.Marker({
-      position: props.coords,
-      map: map
-    });
-  }
+function addMarkers(props) {
+  var marker = new google.maps.Marker({
+    position: props.coords,
+    animation: google.maps.Animation.DROP,
+    map: map
+  });
+}
 
+/*----- ANIMATIONS -----*/
+var formTl = new TimelineMax();
+const formController = new ScrollMagic.Controller();
+formTl.from(".form h2", 0.5, { x: 200, opacity: 0 });
+formTl.from(".form form", 0.5, { y: 150, opacity: 0 });
+
+var tipsTl = new TimelineMax();
+const tipsController = new ScrollMagic.Controller();
+tipsTl.from(".avoid-coronavirus h1", 0.5, { x: -150, opacity: 0 });
+tipsTl.from(".avoid-confrontations h1", 0.5, { x: 150, opacity: 0 }, "-=0.5");
+tipsTl.from(".avoid-coronavirus ul, .avoid-confrontations ul", 0.5, {
+  y: 150,
+  opacity: 0
+});
+
+const tipsScene = new ScrollMagic.Scene({
+  triggerElement: ".tips-page"
+})
+  .setTween(tipsTl)
+  .addTo(tipsController);

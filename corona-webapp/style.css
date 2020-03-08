@@ -13,31 +13,50 @@ body {
   font-size: 18px;
 }
 
+h1 {
+  font-weight: 300;
+}
+
 h2 {
   font-weight: 300;
 }
 
 button {
-  background-color: #f08080;
   color: #f0f8ff;
   padding: 10px 20px;
   display: inline-block;
   border-radius: 12px;
-}
-button:hover {
-  background-color: #ffb6c1;
+  transition: all 0.5s ease;
 }
 /* --------------------------------------- */
 /* LANDING PAGE */
 /* --------------------------------------- */
+/*----- BANNER -----*/
+.header {
+  display: flex;
+  height: 8vh;
+  align-items: center;
+  text-align: center;
+  background-color: #dbdbdb;
+}
+
+.logo {
+  height: 8vh;
+  margin-left: 5%;
+}
+
+.hero-text {
+  margin-left: 25%;
+}
+
 .landing-page {
   display: flex;
-  height: 100vh;
+  height: 92vh;
 }
 
 #map {
   width: 66.67%;
-  height: 100vh;
+  height: 92vh;
 }
 
 /*----- FORM -----*/
@@ -63,15 +82,16 @@ input {
   width: 100%;
   margin-bottom: 25px;
   border-radius: 15px;
+  height: 40px;
+  font-size: 70%;
   background-color: #fff;
   border: 2px solid #000;
   color: #000;
   transition: all 0.3s ease;
 }
 
-input {
-  height: 40px;
-  font-size: 70%;
+.input-field {
+  margin: 10px 0;
 }
 
 textarea {
@@ -125,6 +145,55 @@ textarea:focus {
   color: #fff;
 }
 
+/*----- BUTTON SCALE -----*/
+.btn-scale {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #000;
+  cursor: pointer;
+  transform: all 0.5s ease;
+}
+
+.btn-1 {
+  background-color: #3f0;
+}
+
+.btn-2 {
+  background-color: #9f0;
+}
+
+.btn-3 {
+  background-color: #ff0;
+}
+
+.btn-4 {
+  background-color: #f90;
+}
+
+.btn-5 {
+  background-color: #f30;
+}
+
+.btn-1:hover {
+  background-color: rgb(43, 214, 0);
+}
+
+.btn-2:hover {
+  background-color: rgb(118, 197, 0);
+}
+
+.btn-3:hover {
+  background-color: rgb(226, 226, 15);
+}
+
+.btn-4:hover {
+  background-color: rgb(209, 126, 1);
+}
+
+.btn-5:hover {
+  background-color: rgb(211, 44, 2);
+}
+
 /*----- SVG CHECK ANIMATION -----*/
 #svg-check {
   display: none;
@@ -134,7 +203,7 @@ svg {
   position: absolute;
   width: 40px;
   height: 40px;
-  right: 20%;
+  left: 30%;
 }
 
 svg.animate path {
@@ -170,7 +239,7 @@ svg.animate path {
 }
 
 .avoid-confrontations {
-  background-color: #ffe4e1;
+  background-color: #`;
   padding: 60px 0;
 }
 

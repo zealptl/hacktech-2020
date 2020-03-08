@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <header class="header">
+      <img src="/corona-webapp/logo.png" alt="logo" class="logo">
+      <h1 class="hero-text">#NoCoronaDiscrimination</h1>
+    </header>
     <section class="landing-page">
       <div id="map"></div>
       <div class="form">
@@ -17,18 +21,24 @@
           <div class="input-field">
             <label for="location">Where did it happen?</label>
             <div class="location-input">
-              <input
-                type="text"
-                id="address"
-                class="user-input"
-                placeholder="Enter zip code *"
-              />
-              <span>or</span>
               <button type="button" id="find-me-btn" class="btn">
                 Find Me
               </button>
+              <span id="lat">Lat: </span>
+              <span id="long">Long: </span>
               <input type="hidden" id="latitude" class="user-input" value="3487">
               <input type="hidden" id="longitude" class="user-input" value="3487">
+            </div>
+          </div>
+          <div class="input-field">
+            <label for="severity">How severe was the attack</label>
+            <div class="scale">
+              <button class="btn-scale btn-1">1</button>
+              <button class="btn-scale btn-2">2</button>
+              <button class="btn-scale btn-3">3</button>
+              <button class="btn-scale btn-4">4</button>
+              <button class="btn-scale btn-5">5</button>
+
             </div>
           </div>
           <div class="input-field">
@@ -133,6 +143,10 @@
       defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvPguKuWlYlznkTBe0khVTRsGFV7-2WuU &callback=initMap"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TimelineMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/plugins/animation.gsap.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
   </body>
 </html>
