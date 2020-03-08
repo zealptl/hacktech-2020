@@ -34,6 +34,7 @@ const locationsRef = dbRef.child("locations");
 const addIncidentBtnUI = document.getElementById("add-incident-btn");
 addIncidentBtnUI.addEventListener("click", addIncidentBtnClicked);
 
+
 function addIncidentBtnClicked() {
   const addUserInputsUI = document.getElementsByClassName("user-input");
   let newIncident = {};
@@ -50,17 +51,19 @@ function addIncidentBtnClicked() {
 }
 
 // Pulling data from Firebase
-const locationListUI = document.getElementById("locationList");
-locationsRef.on("child_added", snap => {
-  let location = snap.val();
-  
-  //console.log(location.address);
-  //console.log(location.description);
-  console.log(location.latitude);
-  console.log(location.longitude);
-  
-  markers.push( {coords: { lat: location.latitude, long: location.longitude} });
-});
+function readUserData() {
+  const locationListUI = document.getElementById("locationList");
+  locationsRef.on("child_added", snap => {
+    let location = snap.val();
+    
+    //console.log(location.address);
+    //console.log(location.description);
+    //console.log(location.latitude);
+    //console.log(location.longitude);
+    
+    markers.push( {coords: { lat: parseFloat(location.latitude), lng: parseFloat(location.longitude)} });
+  });
+}
 
 //Find Me button clicked
 document.getElementById("find-me-btn").addEventListener("click", () => {
@@ -85,20 +88,30 @@ document.getElementById("find-me-btn").addEventListener("click", () => {
   }
 });
 
+var map;
+
 // Google Maps
 function initMap() {
-  var options = {
-    zoom: 8,
-    center: { lat: 40.7831, lng: -73.9712 }
-  };
+  readUserData();
 
-  var map = new google.maps.Map(document.getElementById("map"), options);
+  setTimeout(function(){ // 2 second timeout while data from database is loaded
+
+    var options = {
+      zoom: 8,
+      center: { lat: 40.7831, lng: -73.9712 }
+    };
+
+    map = new google.maps.Map(document.getElementById("map"), options);
 
 
-  for (let i = 0; i < markers.length; i++) {
-    addMarkers(markers[i]);
-    console.log(markers[i]);
-  }
+    for (let i = 0; i < markers.length; i++) {
+      addMarkers(markers[i]);
+      console.log(markers[i]);
+    }
+
+
+  }, 2000); 
+
 
   function addMarkers(props) {
     var marker = new google.maps.Marker({
